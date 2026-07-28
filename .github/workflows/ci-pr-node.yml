@@ -1,0 +1,4 @@
+name: CI-PR-NODE
+
+on:
+    workflow_dispatch: 
