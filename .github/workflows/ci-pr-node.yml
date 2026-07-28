@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-test:
+  run-npm-install:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -15,6 +15,16 @@ jobs:
           node-version: 24
           cache: 'npm'
       - name: install dependencies
-        run: npm i
+        run: npm ci
+  run-npm-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: 'npm'
       - name: launch test
         run: npm test
