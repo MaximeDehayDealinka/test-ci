@@ -1,4 +1,13 @@
 name: CI-PR-NODE
 
 on:
-    workflow_dispatch: 
+  workflow_dispatch:
+
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install dependencies
+        run: npm i
+      - name: launch test
+        run: npm test
