@@ -24,7 +24,4 @@ jobs:
       - name : Create issue Request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run : gh issue create \
-            --repo ${{github.repository}} \ 
-            --title "${GITHUB_SHA::7}" \
-            --body "Fail about ${GITHUB_SHA}"
+        run : gh issue create --title "${GITHUB_SHA::7}" --body "Fail about ${GITHUB_SHA}"
