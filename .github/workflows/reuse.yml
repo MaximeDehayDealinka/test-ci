@@ -1,0 +1,11 @@
+name: Reusable Workflow user
+
+on:
+  workflow_dispatch:
+
+jobs:
+    run-npm-test:
+      uses: MaximeDehayDealinka/test-ci/.github/workflows/ex4.yml@main 
+      with:
+        LTS_VERSION: "*"
+      
