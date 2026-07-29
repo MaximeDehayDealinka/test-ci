@@ -17,6 +17,7 @@ jobs:
       - name: install dependencies
         run: npm ci
   run-npm-test:
+    needs: run-npm-install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

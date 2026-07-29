@@ -1,0 +1,27 @@
+name: CI-ENV-NODE
+
+env:
+  NODE_VERSION: 20
+
+on:
+  pull_request:
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    permissions: 
+        issues: write 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+      - name : Check Node version
+        run: node -v
+      - name : Create issue Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run : gh issue create --title "${GITHUB_SHA::7}" --body "Fail about ${GITHUB_SHA}"
