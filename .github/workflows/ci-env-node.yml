@@ -9,6 +9,8 @@ on:
 jobs:
   create-issue:
     runs-on: ubuntu-latest
+    permissions: 
+        issues: write 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -19,4 +21,10 @@ jobs:
           cache: "npm"
       - name : Check Node version
         run: node -v
-        
+      - name : Create issue Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run : gh issue create \
+            -- repo ${{github.repository}} \ 
+            -- title "${GITHUB_SHA::7}" \
+            -- body "Fail about ${GITHUB_SHA}"
