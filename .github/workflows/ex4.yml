@@ -1,8 +1,8 @@
-name: reusable workflow
+name: reusable NPM TEST
 on:
   workflow_call:
     inputs:
-      LST_VERSION:
+      node-version:
         required: false
         default: 'lts/*'
         type: string
@@ -16,7 +16,7 @@ jobs:
         - name : setup node
           uses: actions/setup-node@v6
           with:
-            node-version: 'lts/${{ inputs.LST_VERSION }}'
+            node-version: '${{ inputs.Lnode-version }}'
         - name: run test
           shell: bash
           run: |
